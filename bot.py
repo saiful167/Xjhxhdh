@@ -1,4 +1,4 @@
-import requests
+telebot requests
 import time
 import random
 import string
@@ -6,6 +6,24 @@ import sqlite3
 import os
 from datetime import datetime
 import telebot
+# আপনার বর্তমান কোডের শুরুতেই (যেখানে অন্যান্য import আছে সেখানে) এই লাইনগুলো যোগ করুন:
+
+import threading
+from flask import Flask
+
+# ফ্লাস্ক অ্যাপ (Render এর জন্য পোর্ট বাঁধার কৌশল)
+flask_app = Flask(__name__)
+
+@flask_app.route('/')
+def home():
+    return "🤖 Magnific Bot is running (polling mode).", 200
+
+def run_flask():
+    port = int(os.environ.get("PORT", 10000))
+    flask_app.run(host="0.0.0.0", port=port)
+
+# ব্যাকগ্রাউন্ডে ফ্লাস্ক চালু করুন
+threading.Thread(target=run_flask, daemon=True).start()
 
 BOT_TOKEN = "8725024459:AAEcL5waEF9eWGjZ1vCXt1Uo56VnENLag00"
 API_KEY = "r3f6PifXWq7w6XLjXJVHFKgMCngyieVW8sySBB38O7"
